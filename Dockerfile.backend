@@ -1,17 +1,20 @@
-
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY ./backend /app/backend
-COPY ./run.py /app/
-COPY ./requirements.txt /app/requirements.txt
+# Копируем зависимости
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+# Копируем все файлы проекта
+COPY . .
+
+# Устанавливаем переменные окружения для Flask
+ENV FLASK_APP=run.py
+ENV FLASK_ENV=production
+
+# Устанавливаем gunicorn
 RUN pip install gunicorn
 
-
-EXPOSE 5000
-
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:run"]
+# Команда для запуска через gunicorn
+CMD ["gunicorn", "-b", "0.0.0.0:5000", "run:app"]
