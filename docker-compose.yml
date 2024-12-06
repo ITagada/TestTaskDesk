@@ -17,14 +17,14 @@ services:
 
   frontend:
     build:
-      context: .
-      dockerfile: todo_frontend/Dockerfile  # Указываем путь к Dockerfile для фронтенда
+      context: ./todo_frontend
+      dockerfile: Dockerfile
     ports:
-      - "3000:3000"  # Пробрасываем порт для фронтенда
+      - "3000:3000"
     volumes:
-      - ./todo_frontend:/todo_frontend  # Привязываем папку с фронтендом для разработки
+      - ./todo_frontend:/todo_frontend
     environment:
-      - CHOKIDAR_USEPOLLING=true  # Для перезагрузки на некоторых системах (если нужно)
+      - CHOKIDAR_USEPOLLING=true
     networks:
       - app_network
 

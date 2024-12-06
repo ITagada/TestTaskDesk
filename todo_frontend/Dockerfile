@@ -1,16 +1,16 @@
+FROM node:16
 
-FROM node:18
+WORKDIR /app
 
-WORKDIR /todo_frontend
+COPY package*.json ./
+RUN npm install -g serve
 
-COPY ./todo_frontend/package*.json ./
+COPY . .
 
-RUN npm install
-
-COPY ./todo_frontend /todo_frontend
+RUN ls -la /app
 
 RUN npm run build
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["serve", "-s", "build", "-l", "3000"]
