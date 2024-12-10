@@ -35,5 +35,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://testtaskdesk-production.up.railway.app"
+  "proxy": "https://testtaskdesk-production.up.railway.app",
+  "homepage": "."
 }
