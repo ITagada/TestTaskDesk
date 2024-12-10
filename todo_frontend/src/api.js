@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://10.250.20.132:5000"; // Замените на ваш адрес API
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
 
 export const fetchTasks = (page = 1, sortBy = "username") =>
   axios.get(`${API_BASE_URL}/tasks`, {
