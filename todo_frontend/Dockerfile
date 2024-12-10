@@ -3,16 +3,12 @@ FROM node:16
 WORKDIR /app/todo_frontend
 
 COPY ./package*.json ./
-RUN npm install -g serve
+RUN npm install
 
 COPY . .
-
-RUN ls -la /app
-
-RUN apt-get update && apt-get install -y
 
 RUN npm run build
 
 EXPOSE 3000
 
-CMD ["serve", "-s", "build", "-l", "3000"]
+CMD ["npx", "serve", "-s", "build", "-l", "3000"]
