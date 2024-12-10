@@ -2,7 +2,7 @@ FROM node:16
 
 WORKDIR /app/todo_frontend
 
-COPY ./todo_frontend/package*.json ./
+COPY ./package*.json ./
 RUN npm install -g serve
 
 COPY . .
