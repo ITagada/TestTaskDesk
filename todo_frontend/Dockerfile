@@ -1,15 +1,15 @@
 FROM node:16
 
-WORKDIR /app
+WORKDIR /app/todo_frontend
 
-COPY package*.json ./
+COPY ./todo_frontend/package*.json ./
 RUN npm install -g serve
 
 COPY . .
 
 RUN ls -la /app
 
-RUN apt-get update && apt-get install -y python3-pip
+RUN apt-get update && apt-get install -y
 
 RUN npm run build
 
