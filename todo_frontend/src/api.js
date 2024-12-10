@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://10.250.21.120:5000";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://10.250.19.56:5000";
 console.log('Base API: ', API_BASE_URL)
 
 export const fetchTasks = (page = 1, sortBy = "username") =>
