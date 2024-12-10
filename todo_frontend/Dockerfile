@@ -9,6 +9,8 @@ COPY . .
 
 RUN ls -la /app
 
+RUN apt-get update && apt-get install -y python3-pip
+
 RUN npm run build
 
 EXPOSE 3000

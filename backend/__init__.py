@@ -14,7 +14,7 @@ def create_app():
     app = Flask(__name__, static_folder='../todo_frontend/build', template_folder='../todo_frontend/build')
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tasks.db'
     app.config['SECRET_KEY'] = 'your_secret_key'
-    CORS(app)
+    CORS(app, origins='*')
 
     db.init_app(app)
     bcrypt.init_app(app)
