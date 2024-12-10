@@ -1,14 +1,11 @@
 import axios from "axios";
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://10.250.21.120:5000";
 console.log('Base API: ', API_BASE_URL)
 
 export const fetchTasks = (page = 1, sortBy = "username") =>
   axios.get(`${API_BASE_URL}/tasks`, {
       params: { page, sort_by: sortBy },
-      headers: {
-          'Access-Control-Allow-Origin': '*', // добавьте эту строку
-      },
   });
 
 export const createTask = (task) =>

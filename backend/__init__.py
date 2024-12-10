@@ -15,7 +15,7 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tasks.db'
     app.config['SECRET_KEY'] = 'your_secret_key'
     app.config['SERVER_NAME'] = 'https://testtaskdesk-production.up.railway.app'
-    CORS(app, origins=['https://lively-gentleness.railway.internal', 'https://localhost:3000'])
+    CORS(app)
 
     db.init_app(app)
     bcrypt.init_app(app)
