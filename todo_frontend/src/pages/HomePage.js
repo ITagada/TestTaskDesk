@@ -3,6 +3,7 @@ import axios from "axios";
 import TaskList from "../components/TaskList";  // Импортируем TaskList
 import Pagination from "../components/Pagination";
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "https://testtaskdesk-production.up.railway.app";
 const HomePage = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [showAddTaskForm, setShowAddTaskForm] = useState(false);
@@ -26,7 +27,7 @@ const HomePage = () => {
 
   const loadTasks = (page) => {
     axios
-      .get(`http://localhost:5000/tasks?page=${page}`)
+      .get(`${API_BASE_URL}/tasks?page=${page}`)
       .then((response) => {
         if (Array.isArray(response.data.tasks)) {
           setTasks(response.data.tasks);
@@ -45,7 +46,7 @@ const HomePage = () => {
   const handleAdminLogin = () => {
     if (username && password) {
       axios
-        .post("http://localhost:5000/api/login", { username, password })
+        .post(`${API_BASE_URL}/api/login`, { username, password })
         .then(response => {
           const token = response.data.token;
           localStorage.setItem('admin_token', token);  // Сохраняем токен в localStorage
@@ -78,7 +79,7 @@ const HomePage = () => {
     const content = e.target.content.value;
 
     axios
-      .post("http://localhost:5000/tasks", { username, email, content })
+      .post(`${API_BASE_URL}/tasks`, { username, email, content })
       .then((response) => {
         alert("Задача успешно добавлена!");
         loadTasks();
@@ -107,7 +108,7 @@ const HomePage = () => {
 
     axios
       .put(
-        `http://localhost:5000/tasks/${editTaskId}`,
+        `${API_BASE_URL}/tasks/${editTaskId}`,
         editedTask,
         {
           headers: {
